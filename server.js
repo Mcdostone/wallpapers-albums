@@ -14,7 +14,7 @@ app.set('view engine', 'ejs');
 app.engine('ejs', engine);
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
-
+app.use(express.static(__dirname + '/public'));
 
 
 app.get('/', function(req, res) {
@@ -31,10 +31,6 @@ app.post('/generate', function(req, res) {
     });
 
 });
-
-
-
-
 
 
 app.listen(PORT, function() {
