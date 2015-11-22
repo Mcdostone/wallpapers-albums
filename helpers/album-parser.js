@@ -7,15 +7,13 @@ module.exports = function(albums) {
 	return {
 		getCovers: function(albums) {
 			albums = getAlbums(albums);
+			var results = [];
 			for (var i = 0; i < albums.length; i++) {
             	var covers = albums[i].image;
-            	//console.log(albums[i]);
-            	//console.log(covers);
-				//console.log(albums[i].name + " -> " + covers[covers.length - 1]);
 				var last = covers.length -1;
-				console.log(covers[last]['#text']);
+				results.push(covers[last]['#text']);
         	}
-        	console.log("\n# " + albums.length);
+        	return results;
 		}
 	}
 }();
