@@ -28,7 +28,11 @@ app.post('/generate', function(req, res) {
     finder.getAllAlbums(artist, function(data) {
         var r = albumParser.getCovers(data);
         res.render('results', {'covers': r});
-    });
+    }, 
+    function(error) {
+		console.log("Error: " + error.message);
+		res.render('results');
+	});
 
 });
 

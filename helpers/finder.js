@@ -7,15 +7,13 @@ module.exports = function() {
 	});
 		
 	return {
-		getAllAlbums: function(artist, cb) {
+		getAllAlbums: function(artist, cb, err) {
     		var request = lastfm.request('artist.getTopAlbums', {
 	        	artist: artist,
 	        
 	        	handlers: {
 	            	success: cb,
-	            	error: function(error) {
-		                console.log("Error: " + error.message);
-	            	}
+	            	error: err
 	        	}
     		});
 		}
