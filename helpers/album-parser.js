@@ -1,5 +1,3 @@
-var get = require('./cover-getter');
-
 module.exports = function(albums) {
 
 	var getAlbums = function(data) {
@@ -8,7 +6,7 @@ module.exports = function(albums) {
 
 
 	return {
-		getCovers: function(albums) {
+		getCovers: function(albums, cb) {
 			albums = getAlbums(albums);
 			var results = [];
 
@@ -16,12 +14,9 @@ module.exports = function(albums) {
             	var covers = albums[i].image;
 				var last = covers.length -1;
 				results.push(covers[last]['#text']);
-        		get(covers[last]['#text'], function() {
-        			console.log("fkjjfjkgkj");
-        		});
         	}
 
-        	return results;
+        	cb(results);
 		}
 	}
 }();

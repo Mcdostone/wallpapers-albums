@@ -5,10 +5,6 @@ var bodyParser = require('body-parser');
 var finder = require('./helpers/finder');
 var albumParser = require('./helpers/album-parser');
 var helpers = require('express-helpers');
-var fs = require('fs');
-/*var tmp = require('./tmp');
-tmp();*/
-var builder = require('./helpers/builder-wallpaper');
 
  
 var app = express();
@@ -32,21 +28,12 @@ app.post('/generate', function(req, res) {
 
 	//Get all cover albums of the artist
     finder.getAllAlbums(artist, function(data) {
-        var r = albumParser.getCovers(data);
+    	albumParser.getCovers(data, function(r) {
+    		res.render('results', {'covers': r});	
+    	})
+        
+    });
 
-       
-
-        /*builder(r, function(name, buffer) {
-        	fs.writeFile(name, buffer);
-        });*/
-
-
-        res.render('results', {'covers': r});
-    }, 
-    function(error) {
-		console.log("Error: " + error.message);
-		res.render('results');
-	});
 
 });
 
