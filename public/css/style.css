@@ -10,3 +10,8 @@ img {
 	border: 0;
 	float: left;
 }
+
+
+img:hover {
+	filter: brightness(25%);
+}

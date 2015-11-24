@@ -4,6 +4,11 @@ var engine = require('ejs-mate');
 var bodyParser = require('body-parser');
 var finder = require('./helpers/finder');
 var albumParser = require('./helpers/album-parser');
+var helpers = require('express-helpers');
+var fs = require('fs');
+/*var tmp = require('./tmp');
+tmp();*/
+var builder = require('./helpers/builder-wallpaper');
 
  
 var app = express();
@@ -15,6 +20,7 @@ app.engine('ejs', engine);
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(express.static(__dirname + '/public'));
+helpers(app);
 
 
 app.get('/', function(req, res) {
@@ -27,6 +33,14 @@ app.post('/generate', function(req, res) {
 	//Get all cover albums of the artist
     finder.getAllAlbums(artist, function(data) {
         var r = albumParser.getCovers(data);
+
+       
+
+        /*builder(r, function(name, buffer) {
+        	fs.writeFile(name, buffer);
+        });*/
+
+
         res.render('results', {'covers': r});
     }, 
     function(error) {
