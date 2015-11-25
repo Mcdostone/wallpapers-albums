@@ -1,7 +1,7 @@
 <% if(typeof covers != 'undefined'){ %>
 	<% for(var i=0; i<covers.length; i++) {%>
 		<% if(typeof covers[i] != 'undefined' && covers[i] != ''){ %>
-   			<img src='<%= covers[i] %>' />
+   			<img class="cover" src='<%= covers[i] %>' />
    		<% } %>
 	<% } %>
 <% } else{ %>

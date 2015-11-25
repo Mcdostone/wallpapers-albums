@@ -11,6 +11,11 @@ img {
 	float: left;
 }
 
+#nb-covers {
+	width: 10%;
+	margin-left: 45%;
+	text-align: center;
+}
 
 img:hover {
 	filter: brightness(25%);

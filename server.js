@@ -28,13 +28,9 @@ app.post('/generate', function(req, res) {
 
 	//Get all cover albums of the artist
     finder.getAllAlbums(artist, function(data) {
-    	albumParser.getCovers(data, function(r) {
-    		res.render('results', {'covers': r});	
-    	})
-        
+    	var covers = albumParser.getCovers(data);
+    	res.render('results', {'covers': covers});
     });
-
-
 });
 
 
