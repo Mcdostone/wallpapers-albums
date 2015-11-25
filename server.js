@@ -6,6 +6,7 @@ var finder = require('./helpers/finder');
 var albumParser = require('./helpers/album-parser');
 var helpers = require('express-helpers');
 var get  = require('./helpers/cover-getter');
+var builder = require('./helpers/builder-wallpaper');
 
  
 var app = express();
@@ -31,8 +32,9 @@ app.post('/generate', function(req, res) {
     finder.getAllAlbums(artist, function(data) {
     	var covers = albumParser.getCovers(data);
     	get.all(covers, function() {
-    		
+
     		res.render('results', {'covers': covers});
+    		builder(covers);
     	});
     });
 });

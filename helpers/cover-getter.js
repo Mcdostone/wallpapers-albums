@@ -25,7 +25,7 @@ module.exports = function(url) {
         all: function(urls, cb) {
             async.each(urls, function(url, callback) {
                 get(url, callback);
-         //       console.log("# GET " + url);
+                console.log("# GET " + url);
             },cb);
         }
     }

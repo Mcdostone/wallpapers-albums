@@ -8,18 +8,23 @@ module.exports = function(covers, cb) {
 	, canvas = new Canvas(200, 200)
   	, ctx = canvas.getContext('2d');
 
-	for (var i = 0; i < covers.length; i++) {
-		var base = path.basename(covers[i]);
+	//for (var i = 0; i < covers.length; i++) {
+		
+		var base = path.basename(covers[0]);
+		var filepath = path.join(__dirname, '..', config.COVERS_DIR, base);
+		console.log(filepath);
 
-		console.log(path.join(__dirname, '..', config.COVERS_DIR, base));
-		fs.readFile(path.join(config.COVERS_DIR, base) , function(err, cover){
+		fs.readFile(filepath, function(err, cover){
   			if (err) throw err;
-			img = new Image;
-			//img.onload = function() {};
+  			img = new Image;
   			img.src = cover;
-  			ctx.drawImage(img, 0, 0, 100, 100);
+  			img.onload = function() {
+  				ctx.drawImage(img, 0, 0, 50, 50);
+  				console.log("gjkfkjgkj");
+  			}
+  			ctx.fillText("Awesome!", 50, 100);
+  			
 		});
-	}
 
-	cb("out.png", canvas.toBuffer());
+		fs.writeFile('out.png', canvas.toBuffer());
 }
