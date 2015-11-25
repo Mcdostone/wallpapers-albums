@@ -15,7 +15,6 @@ module.exports = function(albums) {
             	var covers = albums[i].image;
 				var last = covers.length -1;
 				var cover = covers[last]['#text'];
-				//console.log(cover);
 				results.push(cover);
 			};
 

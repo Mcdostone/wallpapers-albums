@@ -5,6 +5,7 @@ var bodyParser = require('body-parser');
 var finder = require('./helpers/finder');
 var albumParser = require('./helpers/album-parser');
 var helpers = require('express-helpers');
+var get  = require('./helpers/cover-getter');
 
  
 var app = express();
@@ -29,7 +30,10 @@ app.post('/generate', function(req, res) {
 	//Get all cover albums of the artist
     finder.getAllAlbums(artist, function(data) {
     	var covers = albumParser.getCovers(data);
-    	res.render('results', {'covers': covers});
+    	get.all(covers, function() {
+    		
+    		res.render('results', {'covers': covers});
+    	});
     });
 });
 
