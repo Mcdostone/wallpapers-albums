@@ -4,27 +4,33 @@ var path = require('path');
 var config = require('../config/config');
 
 module.exports = function(covers, cb) {
-  	var Image = Canvas.Image
-	, canvas = new Canvas(200, 200)
-  	, ctx = canvas.getContext('2d');
+  var Image = Canvas.Image
+	, canvas = new Canvas(1600, 900)
+  , ctx = canvas.getContext('2d');
 
-	//for (var i = 0; i < covers.length; i++) {
+
+  var width = 100, height = 100;
+  var y = 0, x = 0;
+
+	for (var i = 0; i < covers.length; i++) {
 		
-		var base = path.basename(covers[0]);
+		var base = path.basename(covers[i]);
 		var filepath = path.join(__dirname, '..', config.COVERS_DIR, base);
-		console.log(filepath);
+    
+    
+		
+    img = new Image;
+    img.onload = function() {
+      if(x * width > canvas.width) {
+        y++;
+        x = 0;
+      }
+      ctx.drawImage(img, width * x, y * height, width, height);
+      x++;
+    }
 
-		fs.readFile(filepath, function(err, cover){
-  			if (err) throw err;
-  			img = new Image;
-  			img.src = cover;
-  			img.onload = function() {
-  				ctx.drawImage(img, 0, 0, 50, 50);
-  				console.log("gjkfkjgkj");
-  			}
-  			ctx.fillText("Awesome!", 50, 100);
-  			
-		});
+    img.src = filepath;
+  }
 
-		fs.writeFile('out.png', canvas.toBuffer());
-}
+  fs.writeFile('out.png', canvas.toBuffer());
+};
