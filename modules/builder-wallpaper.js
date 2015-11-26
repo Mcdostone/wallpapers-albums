@@ -16,12 +16,10 @@ module.exports = function(covers, cb) {
 		
 		var base = path.basename(covers[i]);
 		var filepath = path.join(__dirname, '..', config.COVERS_DIR, base);
-    
-    
 		
     img = new Image;
     img.onload = function() {
-      if(x * width > canvas.width) {
+      if(x * width >= canvas.width) {
         y++;
         x = 0;
       }

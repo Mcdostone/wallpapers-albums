@@ -6,7 +6,6 @@ module.exports = function(albums) {
 		return data.topalbums.album;
 	};
 
-
 	return {
 		getCovers: function(albums) {
 			var albums = getAlbums(albums);
@@ -19,6 +18,10 @@ module.exports = function(albums) {
 			};
 
 			return results;
+		},
+
+		numberAlbums: function(data) {
+			return getAlbums(data).length;
 		}
 
 	}

@@ -2,15 +2,12 @@ var express = require('express');
 var ejs = require('ejs');
 var engine = require('ejs-mate');
 var bodyParser = require('body-parser');
-var finder = require('./helpers/finder');
-var albumParser = require('./helpers/album-parser');
 var helpers = require('express-helpers');
-var get  = require('./helpers/cover-getter');
-var builder = require('./helpers/builder-wallpaper');
+var routes = require('./routes');
 
  
 var app = express();
-var PORT = 3143;
+var PORT = 3141;
 
 
 app.set('view engine', 'ejs');
@@ -21,23 +18,8 @@ app.use(express.static(__dirname + '/public'));
 helpers(app);
 
 
-app.get('/', function(req, res) {
-	res.render('home');
-});
-
-app.post('/generate', function(req, res) {
-	var artist = req.body.artist;
-
-	//Get all cover albums of the artist
-    finder.getAllAlbums(artist, function(data) {
-    	var covers = albumParser.getCovers(data);
-    	get.all(covers, function() {
-
-    		res.render('results', {'covers': covers});
-    		builder(covers);
-    	});
-    });
-});
+var router = express.Router();
+app.use('/', routes(router));
 
 
 app.listen(PORT, function() {
