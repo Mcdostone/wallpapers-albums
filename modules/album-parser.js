@@ -10,7 +10,7 @@ module.exports = function(albums) {
 		getCovers: function(albums) {
 			var albums = getAlbums(albums);
 			var results = [];
-			for (var i = albums.length - 1; i >= 0; i--) {
+			for (var i = 0; i < albums.length; i++) {
             	var covers = albums[i].image;
 				var last = covers.length -1;
 				var cover = covers[last]['#text'];

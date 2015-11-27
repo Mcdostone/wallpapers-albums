@@ -20,3 +20,16 @@ img {
 img:hover {
 	filter: brightness(25%);
 }
+
+
+p {
+	display: inline;
+}
+
+
+#resolution {
+	width: auto;
+	position: absolute;
+	top: 50px;
+	right: 50px;
+}

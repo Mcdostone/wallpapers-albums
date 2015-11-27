@@ -3,4 +3,6 @@
 <%- include ./partials/config -%>
 <%- include ./partials/covers -%>
 
-//<p><%= data %></p>
+<% if(typeof data != 'undefined'){ %>
+	<p><%= data %></p>
+<% } %>

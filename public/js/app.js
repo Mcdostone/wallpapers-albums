@@ -1,7 +1,24 @@
 window.onload = function() {
-	console.log('ok');
+
+    // All HTML elements 
 	var input = document.getElementById('nb-covers');
-	console.log(input);
+    var box_width = document.getElementById('width');
+    var box_height = document.getElementById('height');
+
+    var input_width = document.getElementById('input-width');
+    var input_height = document.getElementById('input-height');
+
+
+    var initResolution = function() {
+        box_width.innerHTML = width();
+        box_height.innerHTML = height();
+
+        input_width.value = width();
+        input_height.value = height();
+    }
+
+
+    initResolution();
 
 	input.addEventListener('input', function() {
     	var img = document.getElementsByClassName('cover');
@@ -15,4 +32,16 @@ window.onload = function() {
     	};
     	
 	});
+
+    console.log(w_screen +" X " + h_screen)
+}
+
+
+var width = function() {
+    return screen.width;
+}
+
+
+var height = function() {
+    return screen.height;
 }
