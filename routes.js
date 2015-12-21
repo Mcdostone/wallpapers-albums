@@ -1,5 +1,7 @@
 var finder = require('./modules/lastFM');
 var albumParser = require('./modules/album-parser');
+var getter = require('./modules/cover-getter');
+var builder = require('./modules/builder-wallpaper');
 
 module.exports = function(router) {
 	
@@ -20,6 +22,17 @@ module.exports = function(router) {
 	    	console.log("GET '" + options.artist + "' => " + albumParser.numberAlbums(data) + " albums found");
 
 	    	var covers = albumParser.getCovers(data);
+
+	    	getter.all(covers, function() {
+	    		//console.log("# All downloaded");
+
+	    		builder(covers, req.body, function() {
+	    			console.log("ok");
+	    		})
+
+	    	});
+
+	    	
 
 			//console.log(JSON.stringify(data, null, 1));
 	    	res.render('results', {'covers': covers});//'data': JSON.stringify(data, null, 2)});

@@ -1,5 +1,3 @@
-var get = require('./cover-getter');
-
 module.exports = function(albums) {
 
 	var getAlbums = function(data) {

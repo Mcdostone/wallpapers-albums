@@ -7,6 +7,13 @@ var async = require('async');
 
 module.exports = function() {
 
+    var init = function() {
+        if(!fs.exists(config.COVERS_DIR))
+            fs.mkdir(config.COVERS_DIR)
+    }
+
+    init();
+
     var get = function(url, cb) {
         var filepath = path.join(config.COVERS_DIR, path.basename(url));
         var file = fs.createWriteStream(filepath);

@@ -3,13 +3,13 @@ var Canvas = require('canvas');
 var path = require('path');
 var config = require('../config/config');
 
-module.exports = function(covers, cb) {
+module.exports = function(covers, options, cb) {
   var Image = Canvas.Image
-	, canvas = new Canvas(1600, 900)
+	, canvas = new Canvas(parseInt(options.width_screen), parseInt(options.height_screen))
   , ctx = canvas.getContext('2d');
 
 
-  var width = 100, height = 100;
+  var width = 200, height = 200;
   var y = 0, x = 0;
 
 	for (var i = 0; i < covers.length; i++) {
