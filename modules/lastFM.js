@@ -25,7 +25,6 @@ module.exports = function() {
 		 */
 		getAllAlbums: function(options, cb) {
 			options.limit = options.limit !== undefined ? options.limit : LIMIT_MAX;
-			console.log(options);
 
     		var request = lastfm.request('artist.getTopAlbums', {
 	        	artist: options.artist, 
