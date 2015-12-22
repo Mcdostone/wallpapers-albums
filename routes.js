@@ -2,6 +2,7 @@ var finder = require('./modules/lastFM');
 var albumParser = require('./modules/album-parser');
 var getter = require('./modules/cover-getter');
 var builder = require('./modules/builder-wallpaper');
+var min = require('./modules/minimum-covers');
 
 module.exports = function(router) {
 	
@@ -14,9 +15,10 @@ module.exports = function(router) {
 		console.log(req.body);
 
 	    var options = {
-	        'artist': artist
+	        'artist': artist,
+	        'limit': min(req.body)
 	    }
-
+	    
 	    finder.getAllAlbums(options, function(data) {
 
 	    	console.log("GET '" + options.artist + "' => " + albumParser.numberAlbums(data) + " albums found");
