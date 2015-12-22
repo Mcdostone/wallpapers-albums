@@ -33,3 +33,12 @@ p {
 	top: 50px;
 	right: 50px;
 }
+
+
+
+#preview {
+	display: inline-block;
+	width: 50%;
+	height: auto;
+	margin-left: 25%;
+}

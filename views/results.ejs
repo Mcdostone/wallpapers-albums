@@ -1,8 +1,8 @@
 <% layout('layout') -%>
 <h1>Results</h1>
 <%- include ./partials/config -%>
-<%- include ./partials/covers -%>
 
-<% if(typeof data != 'undefined'){ %>
-	<p><%= data %></p>
-<% } %>
+
+<div id="preview">
+	<%- include ./partials/covers -%>
+</div>

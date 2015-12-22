@@ -1,14 +1,13 @@
+var width = function() {
+    return screen.width;
+}
+
+var height = function() {
+    return screen.height;
+}
+
+
 window.onload = function() {
-
-    var width = function() {
-        return screen.width;
-    }
-
-
-    var height = function() {
-        return screen.height;
-    }
-
 
     var minCovers = function() {
         var total = 0
