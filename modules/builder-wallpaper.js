@@ -11,10 +11,15 @@ module.exports = function(covers, options, cb) {
 	, canvas = new Canvas(widthScreen, heightScreen)
   , ctx = canvas.getContext('2d');
 
+  var surfaceScreen = widthScreen * heightScreen
   var width = parseInt(options.width_cover), height = parseInt(options.height_cover);
-
+  
   var heightDec = heightScreen % height == 0 ? 0 : height - ((heightScreen % height) / 2)
   var widthDec = widthScreen % width == 0 ? 0 : width - ((widthScreen % width) / 2)
+
+  if(options.min_covers > covers.length) {
+    console.log("Pas bon");
+  }
 
   var y = 0, x = 0;
 

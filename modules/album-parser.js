@@ -28,7 +28,8 @@ module.exports = function(albums) {
 				var covers = albums[i].image;
 				var last = covers.length -1;
 				var cover = covers[last]['#text'];
-				results.push(cover);
+				if(cover)
+					results.push(cover);
 			}
 
 			//return shuffle(results);
