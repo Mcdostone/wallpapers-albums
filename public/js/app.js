@@ -9,6 +9,11 @@ window.onload = function() {
     var input_width = document.getElementById('input-width');
     var input_height = document.getElementById('input-height');
 
+    var input_width_cover = document.getElementById('input-width-cover');
+    var input_height_cover = document.getElementById('input-height-cover');
+
+    
+
 
     var initResolution = function() {
         box_width.innerHTML = width();
@@ -22,7 +27,18 @@ window.onload = function() {
 
     initResolution();
 
+    var proportionnalListener = function() {
+        var tmp = this.value;
+        input_width_cover.value = tmp;
+        input_height_cover.value = tmp;
+    }
 
+    if(input_width_cover) {
+        input_height_cover.addEventListener('input', proportionnalListener);
+        input_width_cover.addEventListener('input', proportionnalListener);    
+    }
+    
+    
     if(input) {
         input.addEventListener('input', function() {
             var img = document.getElementsByClassName('cover');

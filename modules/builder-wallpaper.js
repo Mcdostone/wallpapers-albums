@@ -4,12 +4,18 @@ var path = require('path');
 var config = require('../config/config');
 
 module.exports = function(covers, options, cb) {
+
   var Image = Canvas.Image
-	, canvas = new Canvas(parseInt(options.width_screen), parseInt(options.height_screen))
+  var widthScreen = parseInt(options.width_screen)
+  var heightScreen = parseInt(options.height_screen)
+	, canvas = new Canvas(widthScreen, heightScreen)
   , ctx = canvas.getContext('2d');
 
+  var width = parseInt(options.width_cover), height = parseInt(options.height_cover);
 
-  var width = 200, height = 200;
+  var heightDec = heightScreen % height == 0 ? 0 : height - ((heightScreen % height) / 2)
+  var widthDec = widthScreen % width == 0 ? 0 : width - ((widthScreen % width) / 2)
+
   var y = 0, x = 0;
 
 	for (var i = 0; i < covers.length; i++) {
@@ -19,11 +25,11 @@ module.exports = function(covers, options, cb) {
 		
     img = new Image;
     img.onload = function() {
-      if(x * width >= canvas.width) {
+      if(x * width - widthDec >= canvas.width) {
         y++;
         x = 0;
       }
-      ctx.drawImage(img, width * x, y * height, width, height);
+      ctx.drawImage(img, width * x - widthDec, y * height - heightDec, width, height);
       x++;
     }
 
@@ -31,4 +37,5 @@ module.exports = function(covers, options, cb) {
   }
 
   fs.writeFile('out.png', canvas.toBuffer());
+  console.log("ok!");
 };
