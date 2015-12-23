@@ -34,7 +34,7 @@ module.exports = function(albums) {
 			}
 
 			//return shuffle(results);
-			return results;
+			return shuffle(results);
 		},
 
 		numberAlbums: function(data) {

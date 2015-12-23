@@ -1,5 +1,7 @@
 module.exports = {
 
-	COVERS_DIR: 'covers/'
+	COVERS_DIR: 'covers/',
+
+	WALLPAPERS_DIR: 'public/wallpapers/'
 	
 }

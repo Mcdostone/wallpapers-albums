@@ -4,7 +4,6 @@ var path = require('path');
 var config = require('../config/config');
 
 module.exports = function(covers, options, cb) {
-console.log(options);
   var Image = Canvas.Image
   var widthScreen = parseInt(options.width_screen)
   var heightScreen = parseInt(options.height_screen)
@@ -43,7 +42,8 @@ console.log(options);
 
     img.src = filepath;
   }
-
-  fs.writeFile('out.png', canvas.toBuffer());
-  console.log("ok!");
+  var filepath = path.join(__dirname, '..', config.WALLPAPERS_DIR, (new Date()).valueOf().toString()+'.png')
+  fs.writeFile(filepath, canvas.toBuffer());
+  console.log("ok ==> " + filepath);
+  return filepath;
 };
