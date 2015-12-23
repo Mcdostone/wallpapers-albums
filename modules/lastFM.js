@@ -9,11 +9,13 @@ var lastFmNode = require('lastfm').LastFmNode;
  */
 module.exports = function() {
 
-	var LIMIT_MAX = 60;
+	var LIMIT_MAX = 80;
 
 	var lastfm = new lastFmNode({
   		api_key: '57ee3318536b23ee81d6b27e36997cde'
 	});
+
+	var SECURITY = 10
 		
 	return {
 
@@ -24,7 +26,7 @@ module.exports = function() {
 		 * @return JSON results.
 		 */
 		getAllAlbums: function(options, cb) {
-			options.limit = options.limit !== undefined ? options.limit : LIMIT_MAX;
+			options.limit = options.limit !== undefined ? parseInt(options.limit) + SECURITY : LIMIT_MAX;
 
     		var request = lastfm.request('artist.getTopAlbums', {
 	        	artist: options.artist, 

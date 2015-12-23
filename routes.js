@@ -14,17 +14,19 @@ module.exports = function(router) {
 		console.log(req.body);
 
 	    var options = {
-	        'artist': artist,
-	        limit: req.body.min_covers
+	        'artist': artist
+	        //limit: req.body.min_covers
 	    }
 
 	    
 	    finder.getAllAlbums(options, function(data) {
 	    	console.log("GET '" + options.artist + "' => " + albumParser.numberAlbums(data) + " albums found");
 	    	var covers = albumParser.getCovers(data);
+	    	console.log(covers.length)
+	    	covers = covers.slice(0, req.body.min_covers); 
 
 	    	getter.all(covers, function() {
-	    		builder(covers, req.body, function() {
+	    		builder(covers,req.body, function() {
 	    			console.log("ok");
 	    		})
 	    	});
